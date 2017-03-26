@@ -28,7 +28,11 @@ public class Cezar {
 			System.out.println("Wprowadz tekst do zamiany:");
 
 			Scanner scanner = new Scanner(System.in);
-			String str = scanner.next();
+			
+			String str = scanner.nextLine();	
+			System.out.println(str);
+			
+			System.out.println(str.length());
 			
 			str = Encode(str,number);
 			System.out.println(str);
@@ -45,40 +49,63 @@ public class Cezar {
 	
 	private static String Encode(String str, int number)
 	{
-	char[] text = str.toUpperCase().toCharArray();
+		str=str.toUpperCase();
+		StringBuilder builder = new StringBuilder();
 		
 	for (int i = 0; i < str.length(); i++) {
-		if ((text[i] + number <= 90) && (text[i] + number >= 65)) {
 		
-			text[i]=(char)(text[i]+number);
+		if(str.charAt(i)==32)
+		{
+			builder.append(" ");
+		}
+		
+		if ((str.charAt(i) + number <= 90) && (str.charAt(i) + number >= 65)) {
+		
+		
+			builder.append((char)(str.charAt(i)+number));
+			//System.out.println(i+" "+builder);
 		
 		}
 
-		else if ((text[i] - 26 + number >= 65) && (text[i] - 26 + number <= 90)) {
+		else if ((str.charAt(i) - 26 + number >= 65) && (str.charAt(i) - 26 + number <= 90)) {
 		
-			text[i]=(char)(text[i]+number-26);
+			builder.append((char)(str.charAt(i)+number-26));
+			//System.out.println(i+" "+builder);
 		
 		}
 	}
-	return new String(text);
+	
+	return builder.toString();
 	}
 	
 	private static String Decode(String str, int number)
 	{
-	char[] text =str.toUpperCase().toCharArray();
+		str=str.toUpperCase();
+		StringBuilder builder2 = new StringBuilder();
+		
 	
 	for (int i = 0; i < str.length(); i++) {
-		if (((text[i] - number + 26) >= 65) && (text[i] - number + 26 <= 90)) {
+		
+		if(str.charAt(i)==32)
+		{
+			builder2.append(" ");
+		}
+		
+		if (((str.charAt(i) - number + 26) >= 65) && (str.charAt(i) - number + 26 <= 90)) {
 			
-			text[i]=(char)(text[i]-number+26);
+			builder2.append((char)(str.charAt(i)-number+26));
+			//System.out.println(i+" "+builder2);
+			
 
 		}
 
-		else if ((text[i] - number >= 65) && (text[i] - number <= 90)) {
+		else if ((str.charAt(i) - number >= 65) && (str.charAt(i) - number <= 90)) {
 
-			text[i]=(char)(text[i]-number);
+			builder2.append((char)(str.charAt(i)-number));
+			//System.out.println(i+" "+builder2);
+			
 		}
 	}
-	return new String(text);
+	return builder2.toString();
 	}
 }
