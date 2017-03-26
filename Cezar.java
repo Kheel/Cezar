@@ -18,6 +18,10 @@ public class Cezar {
 		catch (Exception e) {
 			System.err.println("Blad " + e);
 		}
+		
+		number= Math.abs(number);
+		number = number %26;
+		
 
 		if (number != 0) {
 
@@ -64,7 +68,7 @@ public class Cezar {
 	char[] text =str.toUpperCase().toCharArray();
 	
 	for (int i = 0; i < str.length(); i++) {
-		if (((text[i] - number + 26) >= 65) && (text[i] - number + 26 < 90)) {
+		if (((text[i] - number + 26) >= 65) && (text[i] - number + 26 <= 90)) {
 			
 			text[i]=(char)(text[i]-number+26);
 
